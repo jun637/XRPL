@@ -77,7 +77,7 @@ xrpl/
 │
 ├── TokenEscrow/ # 에스크로
 │ ├── escrowCancel.ts
-│ ~~├── escrowCreateIOU.ts~~
+│ ├── escrowCreateIOU.ts
 │ ├── escrowCreateMPT.ts
 │ └── escrowFinish.ts
 │
