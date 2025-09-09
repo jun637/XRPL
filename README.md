@@ -24,7 +24,7 @@ cd XRPL
 npm install
 
 # 2) Devnet 지갑 생성 (Admin, User, User2 총 3개)
-npx ts-node xrpl/Wallet/createNewWallet.ts  -> 여기서 출력되는 시드 값을 .env에 저장
+npx ts-node xrpl/Wallet/createNewWallet.ts  -> 여기서 출력되는 시드 값을 프로젝트 루트에 위치한 .env에 저장
 
 # 3) faucet으로 자산 활성화
 npx ts-node xrpl/Wallet/faucet.ts
