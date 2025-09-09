@@ -26,7 +26,7 @@ export async function escrowCreateIOU() {
       Account: user.address,              // 소스 = User
       Destination: user2.address,         // 목적지 = User2 (Merchant)
       Amount: {
-        currency: "USD",                  // 예시 통화 코드
+        currency: "ABC",                  // 예시 통화 코드
         issuer: admin.address,            // IOU 발행자 (Admin)
         value: "50"                       // 문자열 수치
       } as any,
