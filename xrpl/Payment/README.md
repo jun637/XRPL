@@ -13,7 +13,7 @@
 
 ### 1. XRP 전송
 ```bash
-npx ts-node xrpl/Payment/send-xrp.ts
+npx ts-node xrpl/Payment/sendXRP.ts
 ``` 
 * Admin 계정이 User 계정으로 XRP를 송금 (`Amount`는 drops 단위 문자열, 예: `"1000"` = 0.001 XRP)
 
@@ -21,7 +21,7 @@ npx ts-node xrpl/Payment/send-xrp.ts
 
 ### 2. IOU 전송
 ```bash
-npx ts-node xrpl/Payment/send-iou.ts
+npx ts-node xrpl/Payment/sendIOU.ts
 ```
 * Admin(발행자) 계정이 User 계정으로 IOU를 송금  
 * `Amount`는 `{ currency, issuer, value }` 형식이며, User는 해당 IOU의 TrustLine을 반드시 보유해야 함  
@@ -42,3 +42,4 @@ npx ts-node xrpl/Payment/send-iou.ts
 
 ## 🔍 추가 참고
 전체 코드 / 상세 실행 로그 / 필드 해석은 Notion 문서 참고 → [Payment](https://catalyze-research.notion.site/Payment-241898c680bf80d293aaff549535a2b7?source=copy_link)
+

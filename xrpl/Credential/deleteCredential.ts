@@ -7,8 +7,6 @@ const toHex = (s: string) => Buffer.from(s, "utf8").toString("hex")
 
 export async function deleteCredential() {
 
-  const CREDENTIAL_TYPE_HEX = toHex("KYC")    // create/accept과 동일하게
-
   const client = new Client("wss://s.devnet.rippletest.net:51233")
   await client.connect()
   
@@ -24,7 +22,7 @@ export async function deleteCredential() {
       Account: subject.address,        // ✅ 본인이 서명/전송
       Issuer: issuer.address,          // 명시 권장
       Subject: subject.address,        // 명시 권장
-      CredentialType: CREDENTIAL_TYPE_HEX
+      CredentialType: toHex("KYC")     // create/accept과 동일하게
     }
 
     const prepared = await client.autofill(tx)
