@@ -1,16 +1,12 @@
-import { Client, Wallet, Transaction } from "xrpl"
+import { Client, Wallet, Transaction, CredentialCreate } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
 dotenv.config({ path: path.join(__dirname, "..", ".env") })
 
 const toHex = (s: string) => Buffer.from(s, "utf8").toString("hex")//hex 인코딩 함수
+const now = () => Math.floor(Date.now()/1000)
 
 export async function createCredential() {
-
-  // 하드코딩(필요 시 바꿔 쓰기)
-  const CREDENTIAL_TYPE_HEX = toHex("KYC") // 예: "KYC"
-  const CREDENTIAL_URI_HEX  = toHex("https://example.com/credentials/kyc/user")
-  const EXPIRATION          = Math.floor(Date.now()/1000) + 3600 // 1시간 뒤
 
   const client = new Client("wss://s.devnet.rippletest.net:51233")
   await client.connect()
@@ -22,13 +18,13 @@ export async function createCredential() {
     const issuer  = Wallet.fromSeed(ADMIN_SEED) // ✅ 서명자 = 발급자
     const subject = Wallet.fromSeed(USER_SEED)
 
-    const tx: Transaction = {
+    const tx: CredentialCreate = {
       TransactionType: "CredentialCreate",
-      Account: issuer.address,          // ✅ 발급자 서명/전송
-      Subject: subject.address,         // 🎯 피발급자
-      CredentialType: CREDENTIAL_TYPE_HEX,
-      Expiration: EXPIRATION,
-      URI: CREDENTIAL_URI_HEX
+      Account: issuer.address,                  // 발급자(서명자)
+      Subject: subject.address,                 // 피발급자
+      CredentialType: toHex("KYC"),             // "KYC" → hex
+      Expiration: now() + 3600,                 // 1시간 후 만료
+      URI: toHex("https://example.com/credentials/kyc/user")
     }
 
     const prepared = await client.autofill(tx)

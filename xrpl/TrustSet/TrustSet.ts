@@ -2,14 +2,14 @@ import dotenv from "dotenv"
 import path from "path"
 import { Client, Wallet, TrustSet as TrustSetTx } from "xrpl"
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 export async function TrustSet() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
   await client.connect()
 
   const ADMIN_SEED = process.env.ADMIN_SEED
-  const USER_SEED = process.env.USER_SEED
+  const USER_SEED = process.env.USER2_SEED
   if (!ADMIN_SEED || !USER_SEED) throw new Error("Missing env: ADMIN_SEED, USER_SEED")
 
   const admin = Wallet.fromSeed(ADMIN_SEED.trim())
@@ -18,17 +18,17 @@ export async function TrustSet() {
   // TrustSet 트랜잭션
   const tx: TrustSetTx = {
     TransactionType: "TrustSet",
-    Account: user.address,
+    Account: admin.address,
     LimitAmount: {
-      currency: "USD",
-      issuer: admin.address,
-      value: "10000",
+      currency: "XYZ",
+      issuer: user.address,
+      value: "0", //개
     },
   }
 
   try {
     const prepared = await client.autofill(tx)
-    const signed = user.sign(prepared)
+    const signed = admin.sign(prepared)
     const result = await client.submitAndWait(signed.tx_blob)
 
     console.log(JSON.stringify(result, null, 2))

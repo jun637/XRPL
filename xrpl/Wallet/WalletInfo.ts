@@ -3,7 +3,7 @@ import path from "path"
 import { Client, Wallet } from "xrpl"
 
 // .env 파일 로드
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 export async function WalletInfo() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
@@ -52,6 +52,27 @@ export async function WalletInfo() {
     console.log(
       `TrustLines - ADMIN: ${adminLines.result.lines.length}, USER: ${userLines.result.lines.length}, USER2: ${user2Lines.result.lines.length}`
     )
+    console.log("📌 TrustLine 상세")
+console.log("ADMIN:")
+adminLines.result.lines.forEach((line: any, i: number) => {
+  console.log(
+    `  [${i + 1}] issuer=${line.account}, currency=${line.currency}, balance=${line.balance}, limit=${line.limit}`
+  )
+})
+
+console.log("USER:")
+userLines.result.lines.forEach((line: any, i: number) => {
+  console.log(
+    `  [${i + 1}] issuer=${line.account}, currency=${line.currency}, balance=${line.balance}, limit=${line.limit}`
+  )
+})
+
+console.log("USER2:")
+user2Lines.result.lines.forEach((line: any, i: number) => {
+  console.log(
+    `  [${i + 1}] issuer=${line.account}, currency=${line.currency}, balance=${line.balance}, limit=${line.limit}`
+  )
+})
 
   } catch (error) {
     console.error("❌ 지갑 정보 조회 실패:", error)

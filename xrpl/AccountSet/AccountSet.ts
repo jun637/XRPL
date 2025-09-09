@@ -1,6 +1,6 @@
 import dotenv from "dotenv"
 import path from "path"
-import { Client, Wallet, Transaction } from "xrpl"
+import { Client, Wallet, Transaction} from "xrpl"
 
 dotenv.config({ path: path.join(__dirname, "..", ".env") })
 
@@ -12,10 +12,10 @@ export async function AccountSet() {
   const admin = Wallet.fromSeed(ADMIN_SEED)
 
   try {
-    const tx: any= {
+    const tx = {
       TransactionType: "AccountSet",
       Account: admin.address, //설정할 지갑 주소 입력
-      SetFlag: 0x40000000  // 설정할 플래그 입력력
+      SetFlag : 2 // 설정할 플래그 입력
     }
 
     const prepared = await client.autofill(tx as any)

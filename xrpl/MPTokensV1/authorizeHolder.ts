@@ -4,14 +4,14 @@ import dotenv from "dotenv"
 dotenv.config({ path: path.join(__dirname, "..", ".env") })
 
 // createIssuance 실행 로그에서 복사한 IssuanceID
-const ISSUANCE_ID = "0049CE349E4215DD8AC6196A0A5027DF489AEC3B17BD6211"
+const ISSUANCE_ID = "0049CE469E4215DD8AC6196A0A5027DF489AEC3B17BD6211"
 
 export async function authorizeHolder() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
   await client.connect()
 
   const ADMIN_SEED = process.env.ADMIN_SEED
-  const USER_SEED  = process.env.USER2_SEED
+  const USER_SEED  = process.env.USER_SEED
   if (!ADMIN_SEED || !USER_SEED) throw new Error("Missing env: ADMIN_SEED, USER_SEED")
 
   const admin = Wallet.fromSeed(ADMIN_SEED)
@@ -19,15 +19,15 @@ export async function authorizeHolder() {
 
   const tx: Transaction = {
     TransactionType: "MPTokenAuthorize",
-    Account: user.address,
+    Account: admin.address,
     MPTokenIssuanceID: ISSUANCE_ID,
-    //Holder: user.address
+    Holder: user.address
     //Flags: { tfMPTUnauthorize: true } // 해제하고 싶을 때만 사용
   }
 
   try {
     const prepared = await client.autofill(tx)
-    const signed = user.sign(prepared)
+    const signed = admin.sign(prepared) // 변경해서 사용!
     const result = await client.submitAndWait(signed.tx_blob)
 
     console.log(JSON.stringify(result, null, 2))

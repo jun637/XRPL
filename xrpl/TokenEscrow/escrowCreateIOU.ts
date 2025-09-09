@@ -31,11 +31,11 @@ export async function escrowCreateIOU() {
         value: "50"                       // 문자열 수치
       } as any,
       FinishAfter: now() + 600,           // 10분 후 해제 가능
-      CancelAfter: now() + 3600           // IOU/MPT는 CancelAfter 필수
+      CancelAfter: now() + 3600           // 60분 후 취소 가능
       // Condition: "<hex>"               // 조건부 escrow 시
     }
 
-    const prepared = await client.autofill(tx)
+const prepared = await client.autofill(tx)
 
 // 1) 서명 대상 객체에 SigningPubKey를 "미리" 넣는다
 const toSign = {

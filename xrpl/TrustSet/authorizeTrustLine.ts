@@ -17,10 +17,10 @@ async function allowTrust() {
     Account: adminWallet.address,    // 발행자(RequireAuth 설정된 계정)
     LimitAmount: {
       currency: 'USD',
-      issuer: userWallet.address,   // 발행자 자신
+      issuer: userWallet.address,   // 
       value: '0'
     },
-    Flags: 65536             // tfSetAuth = 승인
+    Flags: 0x00010000               // tfSetAuth = 승인
   }
 
   const prepared = await client.autofill(tx)

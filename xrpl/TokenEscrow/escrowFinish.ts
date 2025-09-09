@@ -16,7 +16,7 @@ export async function escrowFinish() {
 
   try {
     // EscrowCreate 스크립트 실행 후 콘솔에 출력된 Sequence 값
-    const OFFER_SEQUENCE = 4836805
+    const OFFER_SEQUENCE = 4836829
 
     const tx: Transaction = {
       TransactionType: "EscrowFinish",

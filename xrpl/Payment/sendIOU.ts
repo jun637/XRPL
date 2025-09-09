@@ -8,7 +8,7 @@ export async function sendIOU() {
   await client.connect()
 
   const ADMIN_SEED = process.env.ADMIN_SEED
-  const USER_SEED = process.env.USER_SEED
+  const USER_SEED = process.env.USER2_SEED
   if (!ADMIN_SEED || !USER_SEED) throw new Error("Missing env: ADMIN_SEED, USER_SEED")
 
   try {
@@ -20,7 +20,7 @@ export async function sendIOU() {
       Account: admin.address,
       Destination: user.address,
       Amount: {
-        currency: "USD",
+        currency: "XYZ",
         issuer: admin.address,
         value: "100"
       }

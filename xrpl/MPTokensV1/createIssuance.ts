@@ -20,7 +20,7 @@ export async function createIssuance() {
     Flags: {                                  // 정책 예시
       tfMPTCanTransfer: true,
       tfMPTCanEscrow : true,
-      tfMPTRequireAuth: false
+      tfMPTRequireAuth: true
     },
     // MPTokenMetadata: "<hex-encoded string>" // 원하면 메타데이터(hex) 추가
   }
