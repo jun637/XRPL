@@ -16,7 +16,7 @@ async function allowTrust() {
     TransactionType: 'TrustSet',
     Account: adminWallet.address,    // 발행자(RequireAuth 설정된 계정)
     LimitAmount: {
-      currency: 'USD',
+      currency: 'ABC',
       issuer: userWallet.address,   // 
       value: '0'
     },
