@@ -22,7 +22,7 @@ export async function TrustSet() {
     LimitAmount: {
       currency: "ABC",
       issuer: admin.address,
-      value: "100", //개
+      value: "10000", //개
     },
   }
 

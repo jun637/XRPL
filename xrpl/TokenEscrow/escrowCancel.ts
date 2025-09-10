@@ -1,7 +1,7 @@
 import { Client, Wallet, Transaction } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 export async function escrowCancel() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")

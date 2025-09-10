@@ -2,7 +2,7 @@ import { Client, Transaction, Wallet } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 /**
  * AMMBid: AMM 풀의 경매 슬롯 입찰

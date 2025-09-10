@@ -1,5 +1,8 @@
-import 'dotenv/config'
+import dotenv from "dotenv"
+import path from "path"
 import { Client, Transaction, Wallet } from 'xrpl'
+
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 async function allowTrust() {
   const client = new Client('wss://s.devnet.rippletest.net:51233')

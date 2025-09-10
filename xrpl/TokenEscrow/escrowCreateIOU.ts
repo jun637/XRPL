@@ -3,7 +3,7 @@ import { encodeForSigning, encode } from "ripple-binary-codec"
 import { sign as kpSign, deriveKeypair } from "ripple-keypairs"
 import path from "path"
 import dotenv from "dotenv"
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 function now() { return Math.floor(Date.now() / 1000) }
 
@@ -25,13 +25,13 @@ export async function escrowCreateIOU() {
       TransactionType: "EscrowCreate",
       Account: user.address,              // 소스 = User
       Destination: user2.address,         // 목적지 = User2 (Merchant)
-      Amount: {
-        currency: "ABC",                  // 예시 통화 코드
+      Amount: {           
+        currency: "ABC",                  // 통화 코드
         issuer: admin.address,            // IOU 발행자 (Admin)
         value: "50"                       // 문자열 수치
       } as any,
-      FinishAfter: now() + 600,           // 10분 후 해제 가능
-      CancelAfter: now() + 3600           // 60분 후 취소 가능
+      FinishAfter: now() + 60,           // 1분 후 해제 가능
+      CancelAfter: now() + 120           // 2분 후 취소 가능
       // Condition: "<hex>"               // 조건부 escrow 시
     }
 

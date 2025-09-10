@@ -1,14 +1,14 @@
 import { Client, Wallet, Payment } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 export async function sendIOU() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
   await client.connect()
 
   const ADMIN_SEED = process.env.ADMIN_SEED
-  const USER_SEED = process.env.USER2_SEED
+  const USER_SEED = process.env.USER_SEED
   if (!ADMIN_SEED || !USER_SEED) throw new Error("Missing env: ADMIN_SEED, USER_SEED")
 
   try {
@@ -20,7 +20,7 @@ export async function sendIOU() {
       Account: admin.address,
       Destination: user.address,
       Amount: {
-        currency: "XYZ",
+        currency: "ABC",
         issuer: admin.address,
         value: "100"
       }

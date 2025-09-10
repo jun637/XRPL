@@ -1,7 +1,7 @@
 import { Client, Wallet, Transaction } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 // 하이브리드로 올리고 싶으면 true로 변경 (tfHybrid 플래그 추가)
 const HYBRID = false
@@ -18,15 +18,15 @@ export async function createPermissionedOffer() {
   const admin = Wallet.fromSeed(ADMIN_SEED)
   const user  = Wallet.fromSeed(USER_SEED)
 
-  // ⚠️ createDomain 실행 로그에서 복붙한 DomainID(64 hex)
-  const DOMAIN_ID = "5771BD9BD9B9BC01816103C9E435E54630AFF83B607DC9BCB0005D249857677D"
+  // PermissionedDomains/createDomain 스크립트에서 생성된 DomainID(64 hex)
+  const DOMAIN_ID = ""
 
   // 예시) USD(ADMIN 발행)를 팔고, XRP를 받는 오퍼
   // XRPL 의미상: TakerGets = 시장이 '받는 것'(= 내가 파는 것), TakerPays = 시장이 '지불하는 것'(= 내가 받는 것)
   const tx: Transaction = {
     TransactionType: "OfferCreate",
     Account: user.address,
-    TakerGets: { currency: "USD", issuer: admin.address, value: "10" }, // 내가 파는 IOU
+    TakerGets: { currency: "ABC", issuer: admin.address, value: "10" }, // 내가 파는 IOU
     TakerPays: "10000000", // drops (10 XRP) - 내가 받는 것
     DomainID: DOMAIN_ID,
     ...(HYBRID ? { Flags: TF_HYBRID } : {})

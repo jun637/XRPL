@@ -3,7 +3,7 @@ import path from "path"
 import { Client, Wallet } from "xrpl"
 
 // .env 로드 (상위 폴더 기준)
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 async function loadWallet() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
@@ -14,8 +14,6 @@ async function loadWallet() {
     const ADMIN_SEED = process.env.ADMIN_SEED?.trim()
     const USER_SEED  = process.env.USER_SEED?.trim()
     const USER2_SEED = process.env.USER2_SEED?.trim()
-
-    console.log("환경변수 확인:", { ADMIN_SEED, USER_SEED, USER2_SEED })
 
     if (!ADMIN_SEED || !USER_SEED || !USER2_SEED) {
       throw new Error("환경변수 ADMIN_SEED, USER_SEED, USER2_SEED가 모두 필요합니다.")

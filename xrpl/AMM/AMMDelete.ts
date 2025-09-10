@@ -2,7 +2,7 @@ import { Client, Wallet, Transaction } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 /**
  * AMMDelete 트랜잭션
@@ -27,7 +27,7 @@ export async function AMMDelete() {
     Account: admin.address, // 풀 생성자(혹은 관리 계정)
     Asset: { currency: "XRP" },
     Asset2: {
-      currency: "USD",
+      currency: "ABC",
       issuer: admin.address
     }
   }

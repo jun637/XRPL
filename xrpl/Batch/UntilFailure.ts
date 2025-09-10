@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 import path from "path"
 import { Client, Wallet } from "xrpl"
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 export async function UntilFailure() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
