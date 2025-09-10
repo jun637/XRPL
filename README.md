@@ -24,13 +24,25 @@ cd XRPL
 npm install
 
 # 2) Devnet 지갑 생성 (Admin, User, User2 총 3개)
-npx ts-node xrpl/Wallet/createNewWallet.ts  -> 여기서 출력되는 시드 값을 .env에 저장
+npx ts-node xrpl/Wallet/createNewWallet.ts  -> 여기서 출력되는 시드 값을 프로젝트 루트에 위치한 .env에 저장
 
 # 3) faucet으로 자산 활성화
 npx ts-node xrpl/Wallet/faucet.ts
 
 # 4) 지갑 정보 조회
 npx ts-node xrpl/Wallet/WalletInfo.ts
+
+# 5) XRP 전송하기
+npx ts-node xrpl/Payment/sendXRP.ts
+
+# 6) IOU 전송하기
+npx ts-node xrpl/Payment/sendIOU.ts
+
+# 7 Trustline 설정하기
+npx ts-node xrpl/TrustSet/TrustSet.ts
+
+# 8 AccountSet(계정 설정)하기 - 필수 아님
+npx ts-node xrpl/AccountSet/AccountSet.ts
 ```
 * Quickstart 이후 기능별 실행 명령어 및 간단한 시나리오 이해는 [*GitHub 폴더별 README*](#-폴더별-readme-바로가기)에서,  
 * 폴더별 전체 코드 및 상세 실행 로그를 포함한 스크립트 해석은 [*Notion 문서*](https://catalyze-research.notion.site/XRPL-23e898c680bf8023b1b5f94b0b544db3?source=copy_link)에서 확인하세요.
@@ -77,7 +89,7 @@ xrpl/
 │
 ├── TokenEscrow/ # 에스크로
 │ ├── escrowCancel.ts
-│ ~~├── escrowCreateIOU.ts~~
+│ ├── escrowCreateIOU.ts
 │ ├── escrowCreateMPT.ts
 │ └── escrowFinish.ts
 │
