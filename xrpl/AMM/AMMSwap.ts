@@ -2,7 +2,7 @@ import { Client, Wallet, Transaction } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 /**
  * AMMSwap (실제로는 Payment 트랜잭션 활용)
@@ -30,7 +30,7 @@ export async function AMMSwap() {
     Account: user.address,
     Destination: user.address, // 자기 자신을 대상으로 설정 (스왑 결과를 본인 지갑에 받음)
     Amount: {
-      currency: "USD",
+      currency: "ABC",
       issuer: admin.address,
       value: "40" // 받고 싶은 USD 최소 수량
     },

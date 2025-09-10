@@ -2,7 +2,7 @@ import { Client, Wallet, Transaction } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 /**
  * AMMVote 트랜잭션
@@ -27,7 +27,7 @@ export async function AMMVote() {
     TransactionType: "AMMVote",
     Account: user.address,
     Asset: { currency: "XRP" }, // 풀의 첫 번째 자산
-    Asset2: { currency: "USD", issuer: admin.address }, // 풀의 두 번째 자산
+    Asset2: { currency: "ABC", issuer: admin.address }, // 풀의 두 번째 자산
     TradingFee: 25 // 0.25%
   }
 

@@ -1,7 +1,7 @@
 import { Client, Wallet, Transaction } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 const toHex = (s: string) => Buffer.from(s, "utf8").toString("hex")
 
@@ -17,7 +17,7 @@ export async function createDomain() {
     const tx: Transaction = {
       TransactionType: "PermissionedDomainSet",
       Account: admin.address,
-      // DomainID 생략! (새 도메인 생성)
+      // 새로운 Domain 생성 시에는 DomainID 생략
       AcceptedCredentials: [
         {
           Credential: {

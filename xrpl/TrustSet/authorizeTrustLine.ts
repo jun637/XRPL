@@ -1,5 +1,8 @@
-import 'dotenv/config'
+import dotenv from "dotenv"
+import path from "path"
 import { Client, Transaction, Wallet } from 'xrpl'
+
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 async function allowTrust() {
   const client = new Client('wss://s.devnet.rippletest.net:51233')
@@ -16,7 +19,7 @@ async function allowTrust() {
     TransactionType: 'TrustSet',
     Account: adminWallet.address,    // 발행자(RequireAuth 설정된 계정)
     LimitAmount: {
-      currency: 'USD',
+      currency: 'ABC',
       issuer: userWallet.address,   // 
       value: '0'
     },

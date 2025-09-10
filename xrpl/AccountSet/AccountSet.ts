@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 import path from "path"
 import { Client, Wallet, Transaction} from "xrpl"
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 export async function AccountSet() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
@@ -16,6 +16,8 @@ export async function AccountSet() {
       TransactionType: "AccountSet",
       Account: admin.address, //설정할 지갑 주소 입력
       SetFlag : 2 // 설정할 플래그 입력
+    //ClearFlag : 2  
+    // RequireAuth, NoFreeze, AllowTrustLineClawback 3가지는 되돌릴 수 없음.
     }
 
     const prepared = await client.autofill(tx as any)

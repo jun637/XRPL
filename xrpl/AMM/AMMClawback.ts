@@ -2,7 +2,7 @@ import { Client, Transaction, Wallet } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 export async function AMMClawback() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
@@ -17,9 +17,9 @@ export async function AMMClawback() {
     TransactionType: "AMMClawback",
     Account: admin.address,
     Asset: { currency: "XRP", issuer: admin.address}, // XRP는 issuer 필요 없음 (any로 우회)
-    Asset2: { currency: "USD", issuer: admin.address },
+    Asset2: { currency: "ABC", issuer: admin.address },
     Amount: {
-      currency: "USD",
+      currency: "ABC",
       issuer: admin.address,
       value: "10"
     },

@@ -9,7 +9,7 @@ export async function TrustSet() {
   await client.connect()
 
   const ADMIN_SEED = process.env.ADMIN_SEED
-  const USER_SEED = process.env.USER2_SEED
+  const USER_SEED = process.env.USER_SEED
   if (!ADMIN_SEED || !USER_SEED) throw new Error("Missing env: ADMIN_SEED, USER_SEED")
 
   const admin = Wallet.fromSeed(ADMIN_SEED.trim())
@@ -18,17 +18,17 @@ export async function TrustSet() {
   // TrustSet 트랜잭션
   const tx: TrustSetTx = {
     TransactionType: "TrustSet",
-    Account: admin.address,
+    Account: user.address,
     LimitAmount: {
-      currency: "XYZ",
-      issuer: user.address,
-      value: "0", //개
+      currency: "ABC",
+      issuer: admin.address,
+      value: "10000", //개
     },
   }
 
   try {
     const prepared = await client.autofill(tx)
-    const signed = admin.sign(prepared)
+    const signed = user.sign(prepared)
     const result = await client.submitAndWait(signed.tx_blob)
 
     console.log(JSON.stringify(result, null, 2))

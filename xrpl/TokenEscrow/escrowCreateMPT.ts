@@ -3,7 +3,7 @@ import { encodeForSigning, encode } from "ripple-binary-codec"
 import { sign as kpSign, deriveKeypair } from "ripple-keypairs"
 import path from "path"
 import dotenv from "dotenv"
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 function Now() {
     return Math.floor(Date.now() / 1000) - 946_684_800
@@ -23,7 +23,7 @@ export async function escrowCreateMPT() {
 
   try {
     // MPTokensV1의 CreateIssuance 발행 결과에서 복사한 48hex Issuance ID를 이곳에 넣음
-    const ISSUANCE_ID = "0049CE349E4215DD8AC6196A0A5027DF489AEC3B17BD6211"
+    const ISSUANCE_ID = " "
 
     // MPT EscrowCreate: Amount는 MPTAmount({ mpt_issuance_id, value })
     const tx: Transaction = {
@@ -34,7 +34,7 @@ export async function escrowCreateMPT() {
         mpt_issuance_id: ISSUANCE_ID,
         value: "50"
       } as any,                            // (타이핑 미지원 시 any)
-      FinishAfter: Now() + 30,
+      FinishAfter: Now() + 60,
       CancelAfter: Now() + 120
     }
 

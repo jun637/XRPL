@@ -2,7 +2,7 @@ import { Client, Wallet, Transaction } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 /**
  * AMMWithdraw 트랜잭션: 기존 AMM 풀에서 유동성 제거
@@ -25,7 +25,7 @@ export async function AMMWithdraw() {
     TransactionType: "AMMWithdraw",
     Account: user.address,   // 유동성 제거 주체
     Asset: { currency: "XRP" },
-    Asset2: { currency: "USD", issuer: admin.address },
+    Asset2: { currency: "ABC", issuer: admin.address },
     LPTokenIn: {
       currency: "03930D02208264E2E40EC1B0C09E4DB96EE197B1", // getAMMInfo에서 확인한 unique LP 토큰 코드
       issuer: "rUd5wEYNLtC4NRoMEXDAmd8L9ASof8Hn18",         // AMM 계정 주소 (풀 생성 시 자동 생성됨)

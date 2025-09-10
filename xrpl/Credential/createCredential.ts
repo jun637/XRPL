@@ -1,7 +1,7 @@
 import { Client, Wallet, Transaction, CredentialCreate } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 const toHex = (s: string) => Buffer.from(s, "utf8").toString("hex")//hex 인코딩 함수
 const now = () => Math.floor(Date.now()/1000)

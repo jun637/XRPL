@@ -1,7 +1,7 @@
 import { Client, Wallet, Transaction } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 export async function cancelOffer() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
@@ -13,7 +13,6 @@ export async function cancelOffer() {
 
   // ⚠️ 취소할 오퍼의 시퀀스 번호(OfferSequence)를 넣어주세요
   //  - 보통 오퍼를 만든 트랜잭션의 Sequence
-  //  - 또는 account_offers RPC로 내 오퍼를 조회해 가져오기
   const OFFER_SEQUENCE = 4836789
 
   try {

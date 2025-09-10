@@ -1,7 +1,7 @@
 import { Client, Wallet } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 export async function bookOffers() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
@@ -14,13 +14,13 @@ export async function bookOffers() {
   const ADMIN_ADDRESS = admin.address
 
   // ⚠️ 도메인 오더북만 보고 싶으면 DomainID 넣기, 오픈 오더북만 보고 싶으면 ""로 두기
-  const DOMAIN_ID = "5771BD9BD9B9BC01816103C9E435E54630AFF83B607DC9BCB0005D249857677D" // 또는 ""
+  const DOMAIN_ID = "" // 또는 ""
 
   try {
     const req: any = {
       command: "book_offers",
       taker_pays: { currency: "XRP" },
-      taker_gets: { currency: "USD", issuer: ADMIN_ADDRESS },
+      taker_gets: { currency: "ABC", issuer: ADMIN_ADDRESS },
       limit: 50
     }
     if (DOMAIN_ID) req.domain = DOMAIN_ID

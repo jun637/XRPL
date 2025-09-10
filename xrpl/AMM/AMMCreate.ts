@@ -2,7 +2,7 @@ import { Client, Wallet, Transaction } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 /**
  * AMMCreate 트랜잭션: 새로운 AMM 풀을 생성
@@ -29,7 +29,7 @@ export async function AMMCreate() {
     Account: admin.address, // 풀 생성자
     Amount: "1000000",     // 10 XRP (drops 단위)
     Amount2: {
-      currency: "USD",
+      currency: "ABC",
       issuer: admin.address,
       value: "10"
     },

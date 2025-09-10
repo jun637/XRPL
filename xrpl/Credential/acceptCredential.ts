@@ -1,7 +1,7 @@
 import { Client, Wallet, Transaction } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 const toHex = (s: string) => Buffer.from(s, "utf8").toString("hex")
 

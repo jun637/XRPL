@@ -2,7 +2,7 @@ import { Client, Wallet, Transaction } from "xrpl"
 import path from "path"
 import dotenv from "dotenv"
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") })
+dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 /**
  * AMMDeposit 트랜잭션: 기존 AMM 풀에 유동성 추가
@@ -23,7 +23,7 @@ export async function AMMDeposit() {
   /**
    * ⚠️ 예시 자산: 풀 생성 시 지정한 동일한 자산
    * - Asset: XRP
-   * - Asset2: USD (ADMIN 발행 IOU)
+   * - Asset2: ABC (ADMIN 발행 IOU)
    * - Amount/Amount2: 예치할 수량
    */
   const tx: Transaction = {
@@ -31,12 +31,12 @@ export async function AMMDeposit() {
     Account: user.address,   // 유동성 추가 주체 (트레이더)
     Asset: { currency: "XRP" }, // 첫 번째 풀 자산
     Asset2: {
-      currency: "USD",
+      currency: "ABC",
       issuer: admin.address
     },
     Amount: "5000000", // 5 XRP (drops 단위)
     Amount2: {
-      currency: "USD",
+      currency: "ABC",
       issuer: admin.address,
       value: "50"
     },
