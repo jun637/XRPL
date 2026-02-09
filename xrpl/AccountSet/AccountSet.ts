@@ -15,8 +15,8 @@ export async function AccountSet() {
     const tx = {
       TransactionType: "AccountSet",
       Account: admin.address, //설정할 지갑 주소 입력
-      SetFlag : 2 // 설정할 플래그 입력
-    //ClearFlag : 2  
+      SetFlag : 1  // 설정할 플래그 입력
+    //ClearFlag :   
     // RequireAuth, NoFreeze, AllowTrustLineClawback 3가지는 되돌릴 수 없음.
     }
 

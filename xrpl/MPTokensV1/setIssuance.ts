@@ -4,7 +4,11 @@ import dotenv from "dotenv"
 dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 // createIssuance 실행 로그에서 복사한 IssuanceID
-const ISSUANCE_ID = "0049CE469E4215DD8AC6196A0A5027DF489AEC3B17BD6211"
+const ISSUANCE_ID = "005F7170F83DBD3A2D4DA72C6C10B2B4265471A682741D4D"
+
+// XRPL Docs 기준 Flags 비트마스크 값
+const TF_MPT_LOCK = 0x00010000
+const TF_MPT_UNLOCK = 0x00020000
 
 export async function setIssuance() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
@@ -23,7 +27,7 @@ export async function setIssuance() {
     process.exit(1)
   }
 
-  const flags = mode === "lock" ? { tfMPTLock: true } : { tfMPTUnlock: true }
+  const flags = mode === "lock" ? TF_MPT_LOCK : TF_MPT_UNLOCK
 
   const tx: Transaction = {
     TransactionType: "MPTokenIssuanceSet",

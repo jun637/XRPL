@@ -22,7 +22,7 @@ export async function createCredential() {
       TransactionType: "CredentialCreate",
       Account: issuer.address,                  // 발급자(서명자)
       Subject: subject.address,                 // 피발급자
-      CredentialType: toHex("KYC"),             // "KYC" → hex
+      CredentialType: toHex("AML"),             // "KYC" → hex
       Expiration: now() + 3600,                 // 1시간 후 만료
       URI: toHex("https://example.com/credentials/kyc/user")
     }

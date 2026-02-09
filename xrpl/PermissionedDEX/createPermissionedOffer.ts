@@ -12,24 +12,25 @@ export async function createPermissionedOffer() {
   await client.connect()
 
   const ADMIN_SEED = process.env.ADMIN_SEED   // 예: USD 발행자(issuer)
-  const USER_SEED  = process.env.USER_SEED    // 오퍼 생성자
+  const USER_SEED  = process.env.USER2_SEED    // 오퍼 생성자
   if (!ADMIN_SEED || !USER_SEED) throw new Error("Missing env: ADMIN_SEED, USER_SEED")
 
   const admin = Wallet.fromSeed(ADMIN_SEED)
   const user  = Wallet.fromSeed(USER_SEED)
 
   // PermissionedDomains/createDomain 스크립트에서 생성된 DomainID(64 hex)
-  const DOMAIN_ID = ""
+  const DOMAIN_ID = "53FD5B556275B5A2ECB0B78678EE308813B0C6F33F39B8ED4BDE7284A12EC7CD"
 
   // 예시) USD(ADMIN 발행)를 팔고, XRP를 받는 오퍼
   // XRPL 의미상: TakerGets = 시장이 '받는 것'(= 내가 파는 것), TakerPays = 시장이 '지불하는 것'(= 내가 받는 것)
   const tx: Transaction = {
     TransactionType: "OfferCreate",
     Account: user.address,
-    TakerGets: { currency: "ABC", issuer: admin.address, value: "10" }, // 내가 파는 IOU
-    TakerPays: "10000000", // drops (10 XRP) - 내가 받는 것
+    TakerPays: { currency: "ABC", issuer: admin.address, value: "10" }, // 내가 파는 IOU
+    TakerGets: "10000000", // drops (10 XRP) - 내가 받는 것
     DomainID: DOMAIN_ID,
-    ...(HYBRID ? { Flags: TF_HYBRID } : {})
+    ...(HYBRID ? { Flags: TF_HYBRID } : {}),
+    //Flags: 0x80000000 // tfImmediateOrCancel (체결 안 되면 취소)
   }
 
   try {

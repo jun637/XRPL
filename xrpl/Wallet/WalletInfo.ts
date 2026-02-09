@@ -52,6 +52,13 @@ export async function WalletInfo() {
     console.log(
       `TrustLines - ADMIN: ${adminLines.result.lines.length}, USER: ${userLines.result.lines.length}, USER2: ${user2Lines.result.lines.length}`
     )
+    const userMPT = await client.request({
+      command: "account_objects",
+      account: userWallet.address,
+      type: "mptoken"  // LedgerEntryType = "MPToken"
+    })
+    
+    console.log("USER MPT Objects:", userMPT.result.account_objects)
     console.log("📌 TrustLine 상세")
 console.log("ADMIN:")
 adminLines.result.lines.forEach((line: any, i: number) => {

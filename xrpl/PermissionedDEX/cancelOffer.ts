@@ -13,7 +13,7 @@ export async function cancelOffer() {
 
   // ⚠️ 취소할 오퍼의 시퀀스 번호(OfferSequence)를 넣어주세요
   //  - 보통 오퍼를 만든 트랜잭션의 Sequence
-  const OFFER_SEQUENCE = 4836789
+  const OFFER_SEQUENCE = 6254973
 
   try {
     const tx: Transaction = {

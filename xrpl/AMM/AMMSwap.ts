@@ -32,14 +32,14 @@ export async function AMMSwap() {
     Amount: {
       currency: "ABC",
       issuer: admin.address,
-      value: "40" // 받고 싶은 USD 최소 수량
+      value: "0.00001" // 받고 싶은 IOU 최소 수량
     },
-    SendMax: "5000000", // 최대 5 XRP 지불 (drops 단위)
+    SendMax: "1000000", // 최대 5 XRP 지불 (drops 단위)
     Flags: 0x00020000 // tfPartialPayment (일부만 충족해도 실행 가능)
-  }
+  }as any
 
   try {
-    const prepared = await client.autofill(tx)
+    const prepared = await client.autofill(tx as any)
     const signed = user.sign(prepared)
     const result = await client.submitAndWait(signed.tx_blob)
 

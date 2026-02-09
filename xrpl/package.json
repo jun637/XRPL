@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "description": "XRPL utilities and examples",
-  "keywords": ["xrpl"],
+  "keywords": [
+    "xrpl"
+  ],
   "dependencies": {
     "dotenv": "^17.2.0",
-    "xrpl": "^4.3.0"
+    "ripple-binary-codec": "^2.6.0",
+    "xrpl": "^4.5.0"
   },
   "devDependencies": {
     "@types/node": "^24.0.14",

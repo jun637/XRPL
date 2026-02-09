@@ -4,7 +4,7 @@ import dotenv from "dotenv"
 dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 // createIssuance 실행 로그에서 복사한 IssuanceID
-const ISSUANCE_ID = "0049CE469E4215DD8AC6196A0A5027DF489AEC3B17BD6211"
+const ISSUANCE_ID = ""
 
 export async function destroyIssuance() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")

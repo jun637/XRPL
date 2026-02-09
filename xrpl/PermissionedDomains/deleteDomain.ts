@@ -12,7 +12,7 @@ export async function deleteDomain() {
   const admin = Wallet.fromSeed(ADMIN_SEED)
 
   //  createDomain 실행 로그에서 복붙한 DomainID
-  const DOMAIN_ID = ""
+  const DOMAIN_ID = "F303E26AE604D3E15353AAA6CFC7CB39DC0916FCBF48DCFD008779D1FF611DA0"
 
   try {
     const tx: Transaction = {

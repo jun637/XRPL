@@ -4,7 +4,7 @@ import dotenv from "dotenv"
 dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 // createIssuance 실행 로그에서 복사한 IssuanceID
-const ISSUANCE_ID = "0049CE469E4215DD8AC6196A0A5027DF489AEC3B17BD6211"
+const ISSUANCE_ID = ""
 
 export async function sendMPT() {
   const client = new Client("wss://s.devnet.rippletest.net:51233")
@@ -23,7 +23,7 @@ export async function sendMPT() {
     Destination: user.address,
     Amount: {
       mpt_issuance_id: ISSUANCE_ID,
-      value: "100"
+      value: "5000"
     }
     // 필요시 DeliverMax/SendMax도 같은 구조로 추가 가능
   }

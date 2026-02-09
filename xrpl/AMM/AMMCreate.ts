@@ -27,7 +27,7 @@ export async function AMMCreate() {
   const tx: Transaction = {
     TransactionType: "AMMCreate",
     Account: admin.address, // 풀 생성자
-    Amount: "1000000",     // 10 XRP (drops 단위)
+    Amount: "10000000",     // 10 XRP (drops 단위)
     Amount2: {
       currency: "ABC",
       issuer: admin.address,
@@ -39,7 +39,7 @@ export async function AMMCreate() {
   try {
     const prepared = await client.autofill(tx)
 
-// ✅ LastLedgerSequence 넉넉하게 설정
+
 const currentLedger = await client.getLedgerIndex()
 prepared.LastLedgerSequence = currentLedger + 50
 

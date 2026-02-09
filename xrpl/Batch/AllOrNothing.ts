@@ -29,7 +29,7 @@ export async function AllOrNothing() {
             Account: user.address,
             Destination: user2.address,
             Amount: "5000000",         // 5 XRP
-            Sequence: seq + 1,      // inner도 시퀀스 필수
+            Sequence: seq + 2,      // inner도 시퀀스 필수
             Fee: "0",
             SigningPubKey: ""
           }
@@ -41,7 +41,7 @@ export async function AllOrNothing() {
             Account: user.address,
             Destination: user2.address,
             Amount: "10000000",         // 10 XRP
-            Sequence: seq + 2,
+            Sequence: seq + 1,
             Fee: "0",
             SigningPubKey: ""
           }

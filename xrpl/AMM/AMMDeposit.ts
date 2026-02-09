@@ -34,11 +34,11 @@ export async function AMMDeposit() {
       currency: "ABC",
       issuer: admin.address
     },
-    Amount: "5000000", // 5 XRP (drops 단위)
+    Amount: "500000", // 5 XRP (drops 단위)
     Amount2: {
       currency: "ABC",
       issuer: admin.address,
-      value: "50"
+      value: "5"
     },
     Flags: 0x00100000 // tfTwoAsset: 두 자산 비율 맞춰 예치
   }

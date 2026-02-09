@@ -110,5 +110,5 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["*.ts", "Wallet/Account_info.ts", "Wallet/createNewWallet.ts", "Wallet/deleteAccount.ts", "Wallet/loadWallets.ts", "Wallet/Scenario.ts", "Wallet/setupMultiSign.ts", "Wallet/WalletInfo.ts", "Wallet/faucet.ts"]
+  "include": ["*.ts", "Wallet/Account_info.ts", "Wallet/createNewWallet.ts", "Wallet/deleteAccount.ts", "Wallet/LoadWallet.ts", "Wallet/Scenario.ts", "Wallet/setupMultiSign.ts", "Wallet/WalletInfo.ts", "Wallet/faucet.ts"]
 }

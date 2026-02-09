@@ -14,15 +14,15 @@ export async function createDomain() {
   const admin = Wallet.fromSeed(ADMIN_SEED)
 
   try {
-    const tx: Transaction = {
+    const tx: Transaction = { 
       TransactionType: "PermissionedDomainSet",
       Account: admin.address,
       // 새로운 Domain 생성 시에는 DomainID 생략
-      AcceptedCredentials: [
+      AcceptedCredentials: [ 
         {
           Credential: {
             Issuer: admin.address,
-            CredentialType: toHex("KYC"),
+            CredentialType: toHex("AML"),
           }
         }
       ]

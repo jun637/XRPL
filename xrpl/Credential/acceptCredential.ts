@@ -22,7 +22,7 @@ export async function acceptCredential() {
       TransactionType: "CredentialAccept",
       Account: subject.address,                 // ✅ 피발급자 서명/전송
       Issuer: issuer.address,
-      CredentialType: toHex("KYC")             // createCredential.ts와 동일
+      CredentialType: toHex("AML")             // createCredential.ts와 동일
     }
 
     const prepared = await client.autofill(tx)

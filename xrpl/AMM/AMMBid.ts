@@ -25,7 +25,7 @@ export async function AMMBid() {
     TransactionType: "AMMBid",
     Account: user.address,
     Asset: { currency: "XRP" },
-    Asset2: { currency: "USD", issuer: admin.address },
+    Asset2: { currency: "ABC", issuer: admin.address },
     BidMax: {
       currency: "LP",              // 풀 생성 시 발급된 LP 토큰 코드 (16진 문자열)
       issuer: "rAMMInstance...",   // AMM 계정 주소

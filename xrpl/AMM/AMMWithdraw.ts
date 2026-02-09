@@ -23,16 +23,11 @@ export async function AMMWithdraw() {
 
   const tx: Transaction = {
     TransactionType: "AMMWithdraw",
-    Account: user.address,   // 유동성 제거 주체
+    Account: admin.address,
     Asset: { currency: "XRP" },
     Asset2: { currency: "ABC", issuer: admin.address },
-    LPTokenIn: {
-      currency: "03930D02208264E2E40EC1B0C09E4DB96EE197B1", // getAMMInfo에서 확인한 unique LP 토큰 코드
-      issuer: "rUd5wEYNLtC4NRoMEXDAmd8L9ASof8Hn18",         // AMM 계정 주소 (풀 생성 시 자동 생성됨)
-      value: "10000"                                          // 제거할 LPToken 수량
-    }
-    , Flags: 0x00080000
-  } 
+    Flags: 0x00020000 // ✅ tfWithdrawAll
+  }
 
   try {
     // 트랜잭션 준비
@@ -41,7 +36,7 @@ export async function AMMWithdraw() {
     prepared.LastLedgerSequence = currentLedger + 50
 
     // 서명
-    const signed = user.sign(prepared)
+    const signed = admin.sign(prepared)
 
     // 제출 (Wait 대신 직접 폴링)
     const submitResult = await client.submit(signed.tx_blob)

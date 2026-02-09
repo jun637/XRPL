@@ -23,7 +23,7 @@ export async function escrowCreateMPT() {
 
   try {
     // MPTokensV1의 CreateIssuance 발행 결과에서 복사한 48hex Issuance ID를 이곳에 넣음
-    const ISSUANCE_ID = " "
+    const ISSUANCE_ID = "005F7182F83DBD3A2D4DA72C6C10B2B4265471A682741D4D"
 
     // MPT EscrowCreate: Amount는 MPTAmount({ mpt_issuance_id, value })
     const tx: Transaction = {
@@ -34,8 +34,8 @@ export async function escrowCreateMPT() {
         mpt_issuance_id: ISSUANCE_ID,
         value: "50"
       } as any,                            // (타이핑 미지원 시 any)
-      FinishAfter: Now() + 60,
-      CancelAfter: Now() + 120
+      FinishAfter: Now() + 10,
+      CancelAfter: Now() + 150
     }
 
     const prepared = await client.autofill(tx)

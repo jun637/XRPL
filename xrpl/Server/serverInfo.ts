@@ -1,8 +1,4 @@
-import dotenv from "dotenv"
-import path from "path"
 import { Client } from "xrpl"
-
-dotenv.config({ path: path.join(process.cwd(), ".env") })
 
 async function serverInfo() {
   const client = new Client("wss://s.devnet.rippletest.net:51233") // Devnet 노드 주소
